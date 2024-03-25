@@ -1,2 +1,3 @@
-.gitlab-ci.yml
+src/.gitlab-ci.yml
 Images
+gitcode.txt

@@ -3,12 +3,31 @@
 #include <iostream>
 #include <cassert>
 
-Liste::Liste() {
-  /* votre code ici */
+using namespace std;
+
+Liste::Liste(): _nbElement(0), _premiereCellule(nullptr)
+{
+
 }
 
 Liste::Liste(const Liste& autre) {
-  /* votre code ici */
+
+  //_premiereCellule=autre._premiereCellule;
+
+  Cellule* elementAcuel= autre._premiereCellule;
+  Cellule* elementSuivant=elementAcuel->getCelluleSuivante();
+
+  while(elementSuivant!= nullptr)
+  {
+      Cellule* nouveauCellule= new Cellule(elementAcuel->getValeur(),elementAcuel->getCelluleSuivante());
+      _premiereCellule=elementAcuel;
+
+      elementAcuel=elementSuivant;
+
+      elementSuivant=elementSuivant->getCelluleSuivante();
+
+  }
+
 }
 
 Liste& Liste::operator=(const Liste& autre) {
@@ -17,11 +36,25 @@ Liste& Liste::operator=(const Liste& autre) {
 }
 
 Liste::~Liste() {
-  /* votre code ici */ 
+   
 }
 
 void Liste::ajouter_en_tete(int valeur) {
-  /* votre code ici */
+
+  if(_premiereCellule != nullptr)
+  {
+    Cellule* cellule= _premiereCellule;
+
+    Cellule* nouveauCellule= new Cellule(valeur,cellule);
+    //delete _premiereCellule;
+    _premiereCellule=nouveauCellule;
+
+  }
+  else 
+  {
+    Cellule* nouveauCellule= new Cellule(valeur, nullptr);
+    _premiereCellule=nouveauCellule;
+  }
 }
 
 void Liste::ajouter_en_queue(int valeur) {
@@ -68,5 +101,13 @@ const Cellule* Liste::recherche(int valeur) const {
 }
 
 void Liste::afficher() const {
-  /* votre code ici */
+  Cellule* celluleActuel= _premiereCellule;
+  Cellule* celluleSuivante=_premiereCellule;
+  while(celluleSuivante != nullptr)
+  {
+    int valeur=celluleActuel->getValeur();
+    cout << valeur<<" ";
+    celluleSuivante=celluleSuivante->getCelluleSuivante();
+    celluleActuel=celluleSuivante;
+  }
 }

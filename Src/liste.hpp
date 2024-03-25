@@ -47,8 +47,9 @@ class Liste {
     void afficher() const ;
 
   private :
-
-    /* votre code ici */
+    Cellule* _premiereCellule;
+    int _premierValeur;
+    int _nbElement;
 
 } ;
 

@@ -3,7 +3,17 @@
 
 class Cellule {
 
-  /* votre code ici */
+public:
+  Cellule(int valeur, Cellule* const &celluelSuivante);
+  ~Cellule();
+  int getValeur() const;
+  Cellule* getCelluleSuivante() const;
+  void setValeur(int const valeur);
+  void setCelluleSuivante( Cellule* const CelluleSuivante);
+
+private:
+  int _valeur;
+  Cellule* _celluleSuivante;
 
 } ;
 

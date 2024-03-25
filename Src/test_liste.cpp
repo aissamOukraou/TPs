@@ -1,5 +1,5 @@
 #include "liste.hpp"
-
+using namespace std;
 #include <iostream>
 #include <cassert>
 
@@ -12,6 +12,7 @@ int main() {
   l1.ajouter_en_tete(11) ;
   std::cout << "attendu : [ 11 10 ]" << std::endl ;
   l1.afficher() ; // [ 11 10 ]
+  cout<<endl;
 
   /* decommentez au fur et à mesure de votre progression */
   /*

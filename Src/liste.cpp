@@ -15,27 +15,57 @@ Liste::Liste(const Liste& autre) {
   //_premiereCellule=autre._premiereCellule;
 
   Cellule* elementAcuel= autre._premiereCellule;
-  Cellule* elementSuivant=elementAcuel->getCelluleSuivante();
+  //Cellule* elementSuivant=elementAcuel->getCelluleSuivante();
 
-  while(elementSuivant!= nullptr)
+  while(elementAcuel!= nullptr)
   {
       Cellule* nouveauCellule= new Cellule(elementAcuel->getValeur(),elementAcuel->getCelluleSuivante());
+
       _premiereCellule=elementAcuel;
 
-      elementAcuel=elementSuivant;
+      elementAcuel=elementAcuel->getCelluleSuivante();
 
-      elementSuivant=elementSuivant->getCelluleSuivante();
+      _nbElement++;
 
   }
 
 }
 
 Liste& Liste::operator=(const Liste& autre) {
-  /* votre code ici */
+  
+  /*Cellule* autreElementActuel= autre._premiereCellule;
+  _premiereCellule=autre._premiereCellule;
+  while(autreElementActuel != nullptr)
+  {
+    Cellule* nouveauCellule= new Cellule(autreElementActuel->getValeur(),autreElementActuel->getCelluleSuivante());
+    _premiereCellule=nouveauCellule;
+    autreElementActuel=autreElementActuel->getCelluleSuivante();
+
+    _nbElement++;
+  
+  }*/// L'algorithme est faux !!
+
   return *this ;
 }
 
 Liste::~Liste() {
+
+  if(_premiereCellule == nullptr)
+  {
+  }
+  else 
+  {
+    Cellule* elementActuel= _premiereCellule;
+
+    while(elementActuel != nullptr)
+    {
+      Cellule* elementSuivant=elementActuel->getCelluleSuivante();
+      delete elementActuel;
+      _nbElement--;
+      elementActuel=elementSuivant;
+    }
+    _premiereCellule=nullptr;
+  }
    
 }
 
@@ -43,18 +73,18 @@ void Liste::ajouter_en_tete(int valeur) {
 
   if(_premiereCellule != nullptr)
   {
-    Cellule* cellule= _premiereCellule;
-
-    Cellule* nouveauCellule= new Cellule(valeur,cellule);
-    //delete _premiereCellule;
-    _premiereCellule=nouveauCellule;
-
+    Cellule* elementActuel=_premiereCellule;
+    Cellule* nouveauElement= new Cellule(valeur, elementActuel);
+    _premiereCellule=nouveauElement;
+    _nbElement++;
+    
   }
   else 
   {
-    Cellule* nouveauCellule= new Cellule(valeur, nullptr);
-    _premiereCellule=nouveauCellule;
-  }
+    Cellule* nouveauElement= new Cellule(valeur, nullptr);
+    _premiereCellule=nouveauElement;
+    _nbElement++;
+  }  
 }
 
 void Liste::ajouter_en_queue(int valeur) {
@@ -62,7 +92,10 @@ void Liste::ajouter_en_queue(int valeur) {
 }
 
 void Liste::supprimer_en_tete() {
-  /* votre code ici */
+  Cellule* elementSuivant=_premiereCellule->getCelluleSuivante();
+  delete _premiereCellule;
+  _premiereCellule=elementSuivant;
+
 }
 
 Cellule* Liste::tete() {
@@ -102,12 +135,11 @@ const Cellule* Liste::recherche(int valeur) const {
 
 void Liste::afficher() const {
   Cellule* celluleActuel= _premiereCellule;
-  Cellule* celluleSuivante=_premiereCellule;
-  while(celluleSuivante != nullptr)
+  while(celluleActuel != nullptr)
   {
-    int valeur=celluleActuel->getValeur();
-    cout << valeur<<" ";
-    celluleSuivante=celluleSuivante->getCelluleSuivante();
-    celluleActuel=celluleSuivante;
+    //int valeur=celluleActuel->getValeur();
+    //cout << valeur<<" ";
+    cout <<celluleActuel->getValeur()<<" ";
+    celluleActuel=celluleActuel->getCelluleSuivante();
   }
 }

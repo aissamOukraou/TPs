@@ -14,10 +14,10 @@ int main() {
   l1.afficher() ; // [ 11 10 ]
   cout<<endl;
 
-  /* decommentez au fur et à mesure de votre progression */
-  /*
+  /*decommentez au fur et à mesure de votre progression */
+  
   assert(l1.tete()->valeur == 11) ;
-  assert(l1.queue()->valeur == 10) ;
+  /*assert(l1.queue()->valeur == 10) ;
   assert(l1.recherche(11)) ;
   assert(l1.recherche(10)) ; 
   assert(!l1.recherche(12)) ;

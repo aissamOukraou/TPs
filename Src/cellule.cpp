@@ -8,7 +8,7 @@ using namespace std;
  }
  Cellule::~Cellule()
  {
-    delete _celluleSuivante;
+    
  }
 int Cellule::getValeur() const 
 {

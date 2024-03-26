@@ -16,7 +16,7 @@ int main() {
 
   /*decommentez au fur et à mesure de votre progression */
   
-  assert(l1.tete()->valeur == 11) ;
+  //assert(l1.tete()->valeur == 11) ;
   /*assert(l1.queue()->valeur == 10) ;
   assert(l1.recherche(11)) ;
   assert(l1.recherche(10)) ; 

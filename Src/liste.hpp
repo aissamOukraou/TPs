@@ -48,7 +48,6 @@ class Liste {
 
   private :
     Cellule* _premiereCellule;
-    int _premierValeur;
     int _nbElement;
 
 } ;

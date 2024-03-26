@@ -71,11 +71,13 @@ Liste::~Liste() {
 
 void Liste::ajouter_en_tete(int valeur) {
 
-  if(_premiereCellule != nullptr)
+  Cellule* elementActuel= _premiereCellule;
+
+  if(elementActuel != nullptr)
   {
-    Cellule* elementActuel=_premiereCellule;
     Cellule* nouveauElement= new Cellule(valeur, elementActuel);
     _premiereCellule=nouveauElement;
+    elementActuel=elementActuel->getCelluleSuivante();
     _nbElement++;
     
   }
@@ -99,8 +101,10 @@ void Liste::supprimer_en_tete() {
 }
 
 Cellule* Liste::tete() {
-  /* votre code ici */
-  return nullptr ;
+  
+  Cellule* celluleTete= new Cellule(_premiereCellule->getValeur(), _premiereCellule->getCelluleSuivante());
+
+  return celluleTete ;
 }
 
 const Cellule* Liste::tete() const {
@@ -119,8 +123,18 @@ const Cellule* Liste::queue() const {
 }
 
 int Liste::taille() const {
-  /* votre code ici */
-  return 0 ;
+
+  int compteur=0;
+
+  Cellule* elementActuel=_premiereCellule;
+
+  while(elementActuel != nullptr)
+  {
+    compteur++;
+    elementActuel=elementActuel->getCelluleSuivante();
+  }
+
+  return compteur ;
 }
 
 Cellule* Liste::recherche(int valeur) {

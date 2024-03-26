@@ -1,4 +1,5 @@
-src/.gitlab-ci.yml
+Src/.gitlab-ci.yml
 Images
 gitcode.txt
 README.md
+Src/*.o

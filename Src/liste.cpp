@@ -129,7 +129,10 @@ Cellule* Liste::tete() {
 
 const Cellule* Liste::tete() const {
   
-  return _premiereCellule ;
+  const Cellule* tete=_premiereCellule;
+  
+  return tete;
+
 }
 
 Cellule* Liste::queue() {
@@ -163,7 +166,7 @@ int Liste::taille() const {
   while(elementActuel != nullptr)
   {
     compteur++;
-    
+
     elementActuel=elementActuel->getCelluleSuivante();
   }
 
@@ -183,13 +186,26 @@ Cellule* Liste::recherche(int valeur) {
     elementActuel=elementActuel->getCelluleSuivante(); 
   }
 
-  return elementActuel ; //lacellule est egal a nullptre si on trouve pas l'element
+  return elementActuel ; 
   
 }
 
 const Cellule* Liste::recherche(int valeur) const {
-  /* votre code ici */
-  return nullptr ;
+
+  Cellule* elementActuel= _premiereCellule;
+
+  Cellule* laCellule=_premiereCellule;
+
+  while(elementActuel != nullptr && elementActuel->getValeur() != valeur)
+  {
+    laCellule=elementActuel;
+
+    elementActuel=elementActuel->getCelluleSuivante(); 
+  }
+  
+  const Cellule* tete=elementActuel;
+
+  return tete ;
 }
 
 void Liste::afficher() const {

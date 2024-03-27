@@ -16,14 +16,20 @@ int main() {
 
   /*decommentez au fur et à mesure de votre progression */
   
-  //assert(l1.tete()->valeur == 11) ;
-  /*assert(l1.queue()->valeur == 10) ;
+  assert(l1.tete()->getValeur() == 11) ;
+  cout <<"On a depasse le premier test"<<endl;
+  assert(l1.queue()->getValeur() == 10) ;
+  cout << "on a depasse le deuxieme test"<<endl;
   assert(l1.recherche(11)) ;
-  assert(l1.recherche(10)) ; 
+  cout <<"On a trouve la valeur"<<endl;
+  cout <<l1.recherche(11)->getValeur()<<" doit etre egal a 11"<<endl;
+  assert(l1.recherche(10)) ;
+  cout <<"On a depasse le deuxieme test"<<endl; 
   assert(!l1.recherche(12)) ;
+  cout <<"on a depasse le test mais le nombre n'existe pas"<<endl;
   assert(l1.taille() == 2) ;
-  
-  Liste l2(l1) ;
+  cout <<"La taille est bien egale a de 2"<<endl;
+  /*Liste l2(l1) ;
   l2.ajouter_en_tete(20) ;
   std::cout << "attendu : [ 20 11 10 ]" << std::endl ;
   l2.afficher() ; // [ 20 11 10 ]

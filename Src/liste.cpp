@@ -78,6 +78,7 @@ void Liste::ajouter_en_tete(int valeur) {
     Cellule* nouveauElement= new Cellule(valeur, elementActuel);
     _premiereCellule=nouveauElement;
     elementActuel=elementActuel->getCelluleSuivante();
+
     _nbElement++;
     
   }
@@ -85,41 +86,72 @@ void Liste::ajouter_en_tete(int valeur) {
   {
     Cellule* nouveauElement= new Cellule(valeur, nullptr);
     _premiereCellule=nouveauElement;
+
     _nbElement++;
   }  
 }
 
 void Liste::ajouter_en_queue(int valeur) {
-  /* votre code ici */
+
+  if(_premiereCellule == nullptr)
+  {
+    Cellule* nouveauCellule= new Cellule(valeur, nullptr);
+    _premiereCellule=nouveauCellule;
+  }
+  Cellule* dernierElement= _premiereCellule;
+  Cellule* elementSuivant=dernierElement->getCelluleSuivante();
+  while(elementSuivant != nullptr)
+  {
+      dernierElement=elementSuivant;
+      elementSuivant=elementSuivant->getCelluleSuivante();
+  } 
+  Cellule* nouveauCellule= new Cellule(valeur, nullptr);
+  elementSuivant=nouveauCellule;
+
+  _nbElement++;
 }
 
 void Liste::supprimer_en_tete() {
+
   Cellule* elementSuivant=_premiereCellule->getCelluleSuivante();
   delete _premiereCellule;
   _premiereCellule=elementSuivant;
 
+  _nbElement--;
+
 }
 
 Cellule* Liste::tete() {
-  
-  Cellule* celluleTete= new Cellule(_premiereCellule->getValeur(), _premiereCellule->getCelluleSuivante());
 
-  return celluleTete ;
+  //Cellule element= Cellule(_premiereCellule->getValeur(), _premiereCellule->getCelluleSuivante());
+  return _premiereCellule;
 }
 
 const Cellule* Liste::tete() const {
-  /* votre code ici */
-  return nullptr ;
+  
+  return _premiereCellule ;
 }
 
 Cellule* Liste::queue() {
-  /* votre code ici */
-  return nullptr ;
+  
+  Cellule* elementActuel= _premiereCellule;
+
+  Cellule* elementSuivant= _premiereCellule;
+
+  while(elementSuivant != nullptr)
+    {
+      elementActuel=elementSuivant;
+
+      elementSuivant=elementSuivant->getCelluleSuivante();
+    }  
+    
+  return elementActuel ;
+
 }
 
 const Cellule* Liste::queue() const {
-  /* votre code ici */
-  return nullptr ;
+
+  
 }
 
 int Liste::taille() const {
@@ -131,6 +163,7 @@ int Liste::taille() const {
   while(elementActuel != nullptr)
   {
     compteur++;
+    
     elementActuel=elementActuel->getCelluleSuivante();
   }
 
@@ -138,8 +171,20 @@ int Liste::taille() const {
 }
 
 Cellule* Liste::recherche(int valeur) {
-  /* votre code ici */
-  return nullptr ;
+
+  Cellule* elementActuel= _premiereCellule;
+
+  Cellule* laCellule=_premiereCellule;
+
+  while(elementActuel != nullptr && elementActuel->getValeur() != valeur)
+  {
+    laCellule=elementActuel;
+
+    elementActuel=elementActuel->getCelluleSuivante(); 
+  }
+
+  return elementActuel ; //lacellule est egal a nullptre si on trouve pas l'element
+  
 }
 
 const Cellule* Liste::recherche(int valeur) const {
@@ -153,7 +198,7 @@ void Liste::afficher() const {
   {
     //int valeur=celluleActuel->getValeur();
     //cout << valeur<<" ";
-    cout <<celluleActuel->getValeur()<<" ";
+    std::cout <<celluleActuel->getValeur()<<" ";
     celluleActuel=celluleActuel->getCelluleSuivante();
   }
 }

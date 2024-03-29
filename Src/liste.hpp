@@ -9,7 +9,7 @@ class Liste {
 
     /* construction d'une liste vide */
     Liste() ;
-
+    
     /* construction par copie */
     Liste(const Liste& autre) ;
 

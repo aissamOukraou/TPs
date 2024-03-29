@@ -12,16 +12,18 @@ Liste::Liste(): _nbElement(0), _premiereCellule(nullptr)
 
 Liste::Liste(const Liste& autre) {
 
-  //_premiereCellule=autre._premiereCellule;
 
-  Cellule* elementAcuel= autre._premiereCellule;
-  //Cellule* elementSuivant=elementAcuel->getCelluleSuivante();
+  Cellule* elementAcuel= autre._premiereCellule->getCelluleSuivante();
 
-  while(elementAcuel!= nullptr)
+  Cellule* premierCellule= new Cellule(autre._premiereCellule->getValeur(), nullptr);
+
+  _premiereCellule=premierCellule;
+
+  //ajouter_en_tete(elementAcuel->getValeur());
+
+  while(elementAcuel != nullptr)
   {
-      Cellule* nouveauCellule= new Cellule(elementAcuel->getValeur(),elementAcuel->getCelluleSuivante());
-
-      _premiereCellule=elementAcuel;
+      ajouter_en_queue(elementAcuel->getValeur());
 
       elementAcuel=elementAcuel->getCelluleSuivante();
 
@@ -92,22 +94,47 @@ void Liste::ajouter_en_tete(int valeur) {
 }
 
 void Liste::ajouter_en_queue(int valeur) {
+  
+  Cellule* elementActuel= _premiereCellule;
+
+  Cellule* dernierElement= elementActuel;
 
   if(_premiereCellule == nullptr)
+  {
+    Cellule* element= new Cellule(valeur, nullptr);
+    _nbElement++;
+  }
+  else 
+  {
+    while(elementActuel != nullptr)
+    {
+      dernierElement= elementActuel;
+
+      elementActuel=elementActuel->getCelluleSuivante();
+
+    }
+
+  }
+  Cellule* nouveauEelement= new Cellule(valeur, nullptr);
+
+  dernierElement->setCelluleSuivante(nouveauEelement);
+  /*if(_premiereCellule == nullptr)
   {
     Cellule* nouveauCellule= new Cellule(valeur, nullptr);
     _premiereCellule=nouveauCellule;
   }
-  Cellule* dernierElement= _premiereCellule;
-  Cellule* elementSuivant=dernierElement->getCelluleSuivante();
-  while(elementSuivant != nullptr)
+  else 
   {
-      dernierElement=elementSuivant;
-      elementSuivant=elementSuivant->getCelluleSuivante();
-  } 
+    Cellule* dernierElement= _premiereCellule;
+    Cellule* elementSuivant=dernierElement->getCelluleSuivante();
+    while(elementSuivant != nullptr)
+    {
+        dernierElement=elementSuivant;
+        elementSuivant=elementSuivant->getCelluleSuivante();
+    } 
   Cellule* nouveauCellule= new Cellule(valeur, nullptr);
   elementSuivant=nouveauCellule;
-
+  */
   _nbElement++;
 }
 
@@ -123,7 +150,6 @@ void Liste::supprimer_en_tete() {
 
 Cellule* Liste::tete() {
 
-  //Cellule element= Cellule(_premiereCellule->getValeur(), _premiereCellule->getCelluleSuivante());
   return _premiereCellule;
 }
 
@@ -202,7 +228,7 @@ const Cellule* Liste::recherche(int valeur) const {
 
     elementActuel=elementActuel->getCelluleSuivante(); 
   }
-  
+
   const Cellule* tete=elementActuel;
 
   return tete ;

@@ -6,8 +6,8 @@ using namespace std;
 int main() {
 
   /* adaptez ce fichier selon votre structure */
-
-  Liste l1 ;
+  Liste l1;;
+  //Liste l1;
   l1.ajouter_en_tete(10) ;
   l1.ajouter_en_tete(11) ;
   std::cout << "attendu : [ 11 10 ]" << std::endl ;
@@ -29,8 +29,14 @@ int main() {
   cout <<"on a depasse le test mais le nombre n'existe pas"<<endl;
   assert(l1.taille() == 2) ;
   cout <<"La taille est bien egale a de 2"<<endl;
-  /*Liste l2(l1) ;
-  l2.ajouter_en_tete(20) ;
+  l1.ajouter_en_queue(50);
+  Liste l2(l1) ;
+  cout <<"on a passe le constrcuteur par copie"<<endl;
+  l1.afficher();
+  cout<<"On affiche l2 dans la suite: "<<endl;
+  l2.afficher();
+  cout <<endl;
+  /*l2.ajouter_en_tete(20) ;
   std::cout << "attendu : [ 20 11 10 ]" << std::endl ;
   l2.afficher() ; // [ 20 11 10 ]
   assert(l2.tete()->valeur == 20) ;

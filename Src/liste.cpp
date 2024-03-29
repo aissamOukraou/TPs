@@ -19,8 +19,6 @@ Liste::Liste(const Liste& autre) {
 
   _premiereCellule=premierCellule;
 
-  //ajouter_en_tete(elementAcuel->getValeur());
-
   while(elementAcuel != nullptr)
   {
       ajouter_en_queue(elementAcuel->getValeur());
@@ -34,20 +32,61 @@ Liste::Liste(const Liste& autre) {
 }
 
 Liste& Liste::operator=(const Liste& autre) {
+
   
-  /*Cellule* autreElementActuel= autre._premiereCellule;
-  _premiereCellule=autre._premiereCellule;
-  while(autreElementActuel != nullptr)
+
+  if(_nbElement <= autre._nbElement)
+  { 
+    int i=0;
+
+    Cellule* elementActuel=_premiereCellule;
+
+    Cellule* elementARemplcant=autre._premiereCellule;
+
+    while(i < _nbElement)
+    {
+
+      elementActuel->setValeur(elementARemplcant->getValeur());
+
+      elementActuel=elementActuel->getCelluleSuivante();
+
+      elementARemplcant=elementARemplcant->getCelluleSuivante();
+
+      i++;
+      //ajouter_en_queue(elementARemplcant->getValeur());
+
+      //elementARemplcant=elementARemplcant->getCelluleSuivante();
+
+    }
+
+    while(i >= _nbElement && i< autre._nbElement)
+    {
+      ajouter_en_queue(elementARemplcant->getValeur());
+    }
+
+  }
+  
+  else if(_nbElement == 0)
   {
-    Cellule* nouveauCellule= new Cellule(autreElementActuel->getValeur(),autreElementActuel->getCelluleSuivante());
-    _premiereCellule=nouveauCellule;
-    autreElementActuel=autreElementActuel->getCelluleSuivante();
+    Cellule* elementAcuel= autre._premiereCellule->getCelluleSuivante();
 
-    _nbElement++;
+    Cellule* premierCellule= new Cellule(autre._premiereCellule->getValeur(), nullptr);
+
+    _premiereCellule=premierCellule;
+
+    while(elementAcuel != nullptr)
+    {
+        ajouter_en_queue(elementAcuel->getValeur());
+
+        elementAcuel=elementAcuel->getCelluleSuivante();
+
+        _nbElement++;
+
+    }
+    }
   
-  }*/// L'algorithme est faux !!
-
   return *this ;
+
 }
 
 Liste::~Liste() {
@@ -118,23 +157,7 @@ void Liste::ajouter_en_queue(int valeur) {
   Cellule* nouveauEelement= new Cellule(valeur, nullptr);
 
   dernierElement->setCelluleSuivante(nouveauEelement);
-  /*if(_premiereCellule == nullptr)
-  {
-    Cellule* nouveauCellule= new Cellule(valeur, nullptr);
-    _premiereCellule=nouveauCellule;
-  }
-  else 
-  {
-    Cellule* dernierElement= _premiereCellule;
-    Cellule* elementSuivant=dernierElement->getCelluleSuivante();
-    while(elementSuivant != nullptr)
-    {
-        dernierElement=elementSuivant;
-        elementSuivant=elementSuivant->getCelluleSuivante();
-    } 
-  Cellule* nouveauCellule= new Cellule(valeur, nullptr);
-  elementSuivant=nouveauCellule;
-  */
+ 
   _nbElement++;
 }
 
@@ -238,9 +261,9 @@ void Liste::afficher() const {
   Cellule* celluleActuel= _premiereCellule;
   while(celluleActuel != nullptr)
   {
-    //int valeur=celluleActuel->getValeur();
-    //cout << valeur<<" ";
+    
     std::cout <<celluleActuel->getValeur()<<" ";
     celluleActuel=celluleActuel->getCelluleSuivante();
   }
+  cout <<endl;
 }

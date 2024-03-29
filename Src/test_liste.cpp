@@ -29,28 +29,33 @@ int main() {
   cout <<"on a depasse le test mais le nombre n'existe pas"<<endl;
   assert(l1.taille() == 2) ;
   cout <<"La taille est bien egale a de 2"<<endl;
-  l1.ajouter_en_queue(50);
+  //l1.ajouter_en_queue(50);
   Liste l2(l1) ;
   cout <<"on a passe le constrcuteur par copie"<<endl;
   l1.afficher();
   cout<<"On affiche l2 dans la suite: "<<endl;
   l2.afficher();
   cout <<endl;
-  /*l2.ajouter_en_tete(20) ;
+  l2.ajouter_en_tete(20) ;
   std::cout << "attendu : [ 20 11 10 ]" << std::endl ;
   l2.afficher() ; // [ 20 11 10 ]
-  assert(l2.tete()->valeur == 20) ;
-  assert(l2.queue()->valeur == 10) ;
+  assert(l2.tete()->getValeur() == 20) ;
+  assert(l2.queue()->getValeur() == 10) ;
   assert(l2.recherche(20)) ;
   assert(l2.recherche(11)) ;
   assert(l2.recherche(10)) ;
   assert(!l2.recherche(21)) ;
-
+  cout <<"La liste 3 commence ici: "<<endl;
+  cout <<"L1 est: "<< endl;
+  l1.afficher();
   Liste l3 ;
   l3.ajouter_en_tete(30) ;
+  cout <<"affichage de premier L3 "<<endl;
+  l3.afficher();
   l3 = l1 ;
+  l3.afficher();
   std::cout << "attendu : [ 11 10 ]" << std::endl ;
-  l3.afficher() ; // [ 11 10 ]
+  /*l3.afficher() ; // [ 11 10 ]
   assert(l3.tete()->valeur == 11) ;
   assert(l3.queue()->valeur == 10) ;
   assert(l3.recherche(11)) ;

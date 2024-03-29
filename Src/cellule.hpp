@@ -4,6 +4,8 @@
 class Cellule {
 
 public:
+  Cellule* suivante;
+  int valeur;
   Cellule(int valeur, Cellule* const &celluelSuivante);
   ~Cellule();
   int getValeur() const;

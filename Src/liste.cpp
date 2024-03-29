@@ -7,7 +7,7 @@ using namespace std;
 
 Liste::Liste(): _nbElement(0), _premiereCellule(nullptr)
 {
-
+  
 }
 
 Liste::Liste(const Liste& autre) {
@@ -53,9 +53,6 @@ Liste& Liste::operator=(const Liste& autre) {
       elementARemplcant=elementARemplcant->getCelluleSuivante();
 
       i++;
-      //ajouter_en_queue(elementARemplcant->getValeur());
-
-      //elementARemplcant=elementARemplcant->getCelluleSuivante();
 
     }
 
@@ -65,7 +62,7 @@ Liste& Liste::operator=(const Liste& autre) {
     }
 
   }
-  
+
   else if(_nbElement == 0)
   {
     Cellule* elementAcuel= autre._premiereCellule->getCelluleSuivante();
@@ -173,6 +170,10 @@ void Liste::supprimer_en_tete() {
 
 Cellule* Liste::tete() {
 
+  _premiereCellule->valeur=_premiereCellule->getValeur();
+  
+  _premiereCellule->suivante=_premiereCellule->getCelluleSuivante();
+
   return _premiereCellule;
 }
 
@@ -195,8 +196,10 @@ Cellule* Liste::queue() {
       elementActuel=elementSuivant;
 
       elementSuivant=elementSuivant->getCelluleSuivante();
-    }  
-    
+    }
+
+  elementActuel->valeur=elementActuel->getValeur();
+
   return elementActuel ;
 
 }

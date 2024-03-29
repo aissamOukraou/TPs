@@ -4,7 +4,7 @@ using namespace std;
 
  Cellule::Cellule(int valeur, Cellule* const &celluleSuivante): _valeur(valeur), _celluleSuivante(celluleSuivante)
  {
-
+    suivante=nullptr;
  }
  Cellule::~Cellule()
  {

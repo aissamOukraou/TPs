@@ -6,7 +6,7 @@ using namespace std;
 int main() {
 
   /* adaptez ce fichier selon votre structure */
-  Liste l1;;
+  Liste l1;
   //Liste l1;
   l1.ajouter_en_tete(10) ;
   l1.ajouter_en_tete(11) ;
@@ -16,13 +16,16 @@ int main() {
 
   /*decommentez au fur et à mesure de votre progression */
   
-  assert(l1.tete()->getValeur() == 11) ;
+  //cout <<l1.tete()->valeur<<endl;
+  assert(l1.tete()->valeur == 11) ;
   cout <<"On a depasse le premier test"<<endl;
-  assert(l1.queue()->getValeur() == 10) ;
+  cout <<l1.queue()->valeur<<endl;
+  //cout <<"En haut la queue"<<endl;
+  assert(l1.queue()->valeur == 10) ;
   cout << "on a depasse le deuxieme test"<<endl;
   assert(l1.recherche(11)) ;
   cout <<"On a trouve la valeur"<<endl;
-  cout <<l1.recherche(11)->getValeur()<<" doit etre egal a 11"<<endl;
+  //cout <<l1.recherche(11)->getValeur()<<" doit etre egal a 11"<<endl;
   assert(l1.recherche(10)) ;
   cout <<"On a depasse le deuxieme test"<<endl; 
   assert(!l1.recherche(12)) ;
@@ -39,8 +42,8 @@ int main() {
   l2.ajouter_en_tete(20) ;
   std::cout << "attendu : [ 20 11 10 ]" << std::endl ;
   l2.afficher() ; // [ 20 11 10 ]
-  assert(l2.tete()->getValeur() == 20) ;
-  assert(l2.queue()->getValeur() == 10) ;
+  assert(l2.tete()->valeur == 20) ;
+  assert(l2.queue()->valeur== 10) ;
   assert(l2.recherche(20)) ;
   assert(l2.recherche(11)) ;
   assert(l2.recherche(10)) ;
@@ -50,12 +53,11 @@ int main() {
   l1.afficher();
   Liste l3 ;
   l3.ajouter_en_tete(30) ;
-  cout <<"affichage de premier L3 "<<endl;
+
   l3.afficher();
   l3 = l1 ;
-  l3.afficher();
   std::cout << "attendu : [ 11 10 ]" << std::endl ;
-  /*l3.afficher() ; // [ 11 10 ]
+  l3.afficher() ; // [ 11 10 ]
   assert(l3.tete()->valeur == 11) ;
   assert(l3.queue()->valeur == 10) ;
   assert(l3.recherche(11)) ;
@@ -94,7 +96,7 @@ int main() {
   assert(l3.recherche(11)) ;
   assert(l3.recherche(10)) ;
   assert(l3.recherche(31)) ;
-  */
+  
 
   return 0 ;
 }
